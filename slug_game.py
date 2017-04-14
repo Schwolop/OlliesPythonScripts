@@ -1,7 +1,6 @@
 import operator
 import random
 
-# TODO: Fix bug where each player gets same question
 # TODO: Add end of game detection.
 
 colours = ['red', 'green', 'blue', 'orange', 'yellow']
@@ -23,11 +22,11 @@ def draw_road(road_length, player_state):
 
 def run_round(player_state):
 	op = random.choice(list(operators.keys()))  # Pick a random operator
-	operand1 = random.randrange(1,9)
-	operand2 = random.randrange(1,9)
-	operand_left = max(operand1, operand2)  # Ensure left operand is the greater number
-	operand_right = min(operand1, operand2)
 	for p in player_state:
+		operand1 = random.randrange(1,9)
+		operand2 = random.randrange(1,9)
+		operand_left = max(operand1, operand2)  # Ensure left operand is the greater number
+		operand_right = min(operand1, operand2)
 		question = '%d %s %d' % (operand_left, op, operand_right)
 		answer = operators[op](operand_left, operand_right)
 		players_answer_raw = input("Ok %s, what is %s? " % (p['name'], question))
